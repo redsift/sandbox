@@ -1,12 +1,13 @@
 FROM ubuntu:15.04
 MAINTAINER Deepak Prabhakara email: deepak@redsift.io version: 1.1.101
 
-ENV NANO_MSG=0.8-beta
-
 ENV SIFT_ROOT="/run/dagger/sift" IPC_ROOT="/run/dagger/ipc" SIFT_JSON="sift.json"
 
 # Fix for ubuntu to ensure /etc/default/locale is present
 RUN update-locale
+
+# Install nanomsg
+ENV NANO_MSG=0.8-beta
 
 RUN export DEBIAN_FRONTEND=noninteractive && \ 
   apt-get update && \
