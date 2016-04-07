@@ -1,0 +1,30 @@
+machine:
+  environment:
+    CONTAINER_NAME: quay.io/redsift/sandbox
+    CIRCLE_REVERSE_DEPENDENCIES: sandbox-javascript sandbox-python sandbox-java sandbox-julia
+  services:
+    - docker
+
+dependencies:
+  override:
+    - docker info
+    - |
+      set -e
+      docker build -t sandbox .
+      
+test:
+  override:
+    - |
+      set -e
+  
+deployment:
+  production:
+    branch: master  
+    commands:
+      - docker login -e $QUAY_EMAIL -u $QUAY_USER -p $QUAY_PASS quay.io
+      - | 
+        set -e
+        echo "Tagging as $CONTAINER_NAME:latest"
+        docker tag sandbox:latest $CONTAINER_NAME:latest
+        docker push $CONTAINER_NAME
+      - ./circle_ci_trigger_build
