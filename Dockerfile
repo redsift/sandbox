@@ -6,16 +6,15 @@ ENV SIFT_ROOT="/run/dagger/sift" IPC_ROOT="/run/dagger/ipc" SIFT_JSON="sift.json
 # Fix for ubuntu to ensure /etc/default/locale is present
 RUN update-locale
 
-# Install nanomsg
-ENV NANO_MSG=0.8-beta
-
 RUN export DEBIAN_FRONTEND=noninteractive && \ 
   apt-get update && \
 	apt-get install -y \
-  curl autoconf libtool make && \
+  curl autoconf libtool make pkg-config && \
   apt-get clean -y && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+# Install nanomsg
+ENV NANO_MSG=0.8-beta
 RUN cd /tmp && curl -L https://github.com/nanomsg/nanomsg/archive/$NANO_MSG.tar.gz | tar xz && \
   cd /tmp/nanomsg-$NANO_MSG && sh autogen.sh && ./configure && make && make check && make install && \
   rm -rf /tmp/nanomsg-$NANO_MSG
