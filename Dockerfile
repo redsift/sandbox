@@ -2,7 +2,7 @@ FROM ubuntu:15.04
 MAINTAINER Deepak Prabhakara email: deepak@redsift.io version: 1.1.101
 
 ENV SIFT_ROOT="/run/dagger/sift" IPC_ROOT="/run/dagger/ipc" SIFT_JSON="sift.json"
-LABEL io.redsift.dagger.version="1.0.0" io.redsift.dagger.ipc="nanomsg"
+LABEL io.redsift.sandbox.version="1.0.0" io.redsift.sandbox.ipc="nanomsg"
 
 # Fix for ubuntu to ensure /etc/default/locale is present
 RUN update-locale
