@@ -1,8 +1,8 @@
 FROM ubuntu:15.04
 MAINTAINER Deepak Prabhakara email: deepak@redsift.io version: 1.1.101
 
-ENV SIFT_ROOT="/run/dagger/sift" IPC_ROOT="/run/dagger/ipc" SIFT_JSON="sift.json"
-LABEL io.redsift.sandbox.version="1.0.0" io.redsift.sandbox.ipc="nanomsg"
+ENV SIFT_ROOT="/run/sandbox/sift" IPC_ROOT="/run/sandbox/ipc" SIFT_JSON="sift.json"
+LABEL io.redsift.sandbox.version="1.0.0" io.redsift.sandbox.rpc="nanomsg"
 
 # Fix for ubuntu to ensure /etc/default/locale is present
 RUN update-locale
@@ -23,9 +23,9 @@ RUN cd /tmp && curl -L https://github.com/nanomsg/nanomsg/archive/$NANO_MSG.tar.
 # Update .so cache
 RUN ldconfig
 
-VOLUME /run/dagger/sift /run/dagger/ipc
+VOLUME /run/sandbox/sift /run/sandbox/ipc
 
-WORKDIR /run/dagger/sift
+WORKDIR /run/sandbox/sift
 
 # Setup sandbox user & group with uid & gid 7438
 ENV HOME /home/sandbox
