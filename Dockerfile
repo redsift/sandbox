@@ -1,4 +1,4 @@
-FROM ubuntu:15.04
+FROM ubuntu:15.10
 MAINTAINER Deepak Prabhakara email: deepak@redsift.io version: 1.1.101
 
 ENV SIFT_ROOT="/run/sandbox/sift" IPC_ROOT="/run/sandbox/ipc" SIFT_JSON="sift.json"
