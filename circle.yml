@@ -14,7 +14,9 @@ dependencies:
     - |
       set -e
       docker build -t sandbox .
-      
+      sed -i .bak -e 's/ubuntu:15.10/ubuntu:16.10/g' Dockerfile
+      docker build -t sandbox16 .
+
 test:
   override:
     - |
@@ -27,6 +29,8 @@ deployment:
       - docker login -e $QUAY_EMAIL -u $QUAY_USER -p $QUAY_PASS quay.io
       - | 
         set -e
+        echo "Tagging as $CONTAINER_NAME:16.10"
+        docker tag sandbox16:latest $CONTAINER_NAME:16.10
         echo "Tagging as $CONTAINER_NAME:latest"
         docker tag sandbox:latest $CONTAINER_NAME:latest
         docker push $CONTAINER_NAME
