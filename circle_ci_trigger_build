@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # repoList=( $CIRCLE_REVERSE_DEPENDENCIES )
+repoList=()
 
 for repo in "${repoList[@]}"
 do

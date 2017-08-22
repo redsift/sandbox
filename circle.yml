@@ -14,7 +14,7 @@ dependencies:
     - |
       set -e
       docker build -t sandbox .
-      sed -i .bak -e 's/ubuntu:15.10/ubuntu:16.10/g' Dockerfile
+      sed -i -e 's/ubuntu:15.10/ubuntu:16.10/g' Dockerfile
       docker build -t sandbox16 .
 
 test:
