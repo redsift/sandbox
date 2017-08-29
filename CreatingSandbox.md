@@ -48,6 +48,8 @@ toErrorBytes(String message, String stack) -> byte[]
 encodeValue(ComputeResponse data) -> ComputeResponse
 ```
 
+The `toEncodedMessage` and `toErrorBytes` methods wrap the output and errors emitted from a node with the `protocolMessage` and `protocolError` models defined in the *schemas* folder.
+
 ## Install
 
 The installation script takes in as arguments a list of nodes to install. Iterates over the nodes with an `implementation` field and does the right install for the relevant language (npm install for JavaScript, pip install for Python, etc.)
