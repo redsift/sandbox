@@ -16,9 +16,9 @@ The `Init` class is responsible for two things. Checking for the required enviro
 
 ## Required Models
 
-- `ComputeRequest` [schema]() A node will receive a dictionary with `in`, `with` and `lookup` keys. The `value` emitted above will always come back as a byte array (Buffer in JavaScript, bytes in Python, etc.). You will then need to convert this back to the right representation you need. In general it is recommended you work with byte array where possible, since this will be guaranteed to be supported by every language sandbox.
+- `ComputeRequest` [schema](https://github.com/redsift/sandbox/blob/master/schemas/computeRequest.json) A node will receive a dictionary with `in`, `with` and `lookup` keys. The `value` emitted above will always come back as a byte array (Buffer in JavaScript, bytes in Python, etc.). You will then need to convert this back to the right representation you need. In general it is recommended you work with byte array where possible, since this will be guaranteed to be supported by every language sandbox.
 
-- `ComputeResponse` [schema]() A node can only return the following:
+- `ComputeResponse` [schema](https://github.com/redsift/sandbox/blob/master/schemas/computeResponse.json) A node can only return the following:
   - A dictionary with ‘name’, ‘key’, ‘value’ and an optional ‘epoch’. name is the name of the bucket, key has to be a string and value can only be one of the following:
     - JSON serialisable object (dictionary or array)
     - string
@@ -27,7 +27,7 @@ The `Init` class is responsible for two things. Checking for the required enviro
   - null value (null in JavaScript, None in Python, etc.)
 
 
-- JMAP related models: `Message`, `Emailer`, `Attachment` 
+- JMAP related models: `Message`, `Emailer`, `Attachment` [schema](https://github.com/redsift/sandbox/blob/master/schemas/jmapMessage.json)
 
 
 ## Protocol
