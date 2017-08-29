@@ -1,7 +1,7 @@
 # Creating a Sandbox for the Redsift Platform
 
 
-Redsift provides a polyglot stream prossecing platform, that follows a Directed Acyclic Graph (DAG) model. The DAG is compossed of independent processing units or **nodes**. Nodes can be implemented in a number of languages, thus the polyglot aspect. To support that functionality we use Docker to provide the necessary environment for each language, essentially a sandbox. So, its language has its onw sandbox. A sandbox can also be created when specialized packages are needed e.g. libraries for NLP processing.
+Redsift provides a polyglot stream processing platform, that follows a Directed Acyclic Graph (DAG) model. The DAG is compossed of independent processing units or **nodes**. Nodes can be implemented in a number of languages, thus the polyglot aspect. To support that functionality we use Docker to provide the necessary environment for each language, essentially a sandbox. So, its language has its onw sandbox. A sandbox can also be created when specialized packages are needed e.g. libraries for NLP processing.
 
 ## Init
 
@@ -20,7 +20,7 @@ The `Init` class is responsible for two things. Checking for the required enviro
 
 - `ComputeResponse` [schema](https://github.com/redsift/sandbox/blob/master/schemas/computeResponse.json) A node can only return the following:
   - A dictionary with ‘name’, ‘key’, ‘value’ and an optional ‘epoch’. name is the name of the bucket, key has to be a string and value can only be one of the following:
-    - JSON serialisable object (dictionary or array)
+    - JSON serializable object (dictionary or array)
     - string
     - byte array (Buffer in JavaScript, bytes in Python, etc.)
   - An array of containing the above mentioned dictionary
