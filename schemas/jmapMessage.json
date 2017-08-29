@@ -1,0 +1,146 @@
+{
+  "title": "Message",
+  "type": "object",
+  "required": [
+    "id", 
+    "threadId",
+    "mailboxIds",
+    "isUnread",
+    "isFlagged",
+    "isAnswered",
+    "isDraft",
+    "hasAttachment",
+    "headers",
+    "subject",
+    "date",
+    "user"
+  ],
+  "properties":{
+    "id": {
+      "type": "string"
+    },
+    "threadId": {
+      "type": "string"
+    },
+    "mailboxIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "inReplyToMessageId": {
+      "type": "string"
+    },
+    "isUnread": {
+      "type": "boolean"
+    },
+    "isFlagged": {
+      "type": "boolean"
+    },
+    "isAnswered": {
+      "type": "boolean"
+    },
+    "isDraft": {
+      "type": "boolean"
+    },
+    "hasAttachment": {
+      "type": "boolean"
+    },
+    "headers": {
+      "type": "object"
+    },
+    "from": {
+      "$ref": "#/definitions/emailer"
+    },
+    "to": {
+      "type": "array",
+      "items":{
+        "$ref": "#/definitions/emailer"
+      }
+    },
+    "cc": {
+      "type": "array",
+      "items":{
+        "$ref": "#/definitions/emailer"
+      }
+    },
+    "bcc": {
+      "type": "array",
+      "items":{
+        "$ref": "#/definitions/emailer"
+      }
+    },
+    "replyTo": {
+      "$ref": "#/definitions/emailer"
+    },
+    "subject": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string"
+    },
+    "size": {
+      "type": "number"
+    },
+    "preview": {
+      "type": "string"
+    },
+    "textBody": {
+      "type": "string"
+    },
+    "htmlBody": {
+      "type": "string"
+    },
+    "strippedHtmlBody": {
+      "type": "string"
+    },
+    "attachments": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/attachment" 
+      }
+    },
+    "attachedMessages": {
+      "type": "object"
+    },
+    "user": {
+      "type": "string"
+    }
+  },
+  "definitions":{
+    "emailer":{
+      "title": "Emailer",
+      "type": "object",
+      "required": ["name", "email"],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        }
+      }
+    },
+    "attachment":{
+      "title": "Attachment",
+      "type": "object",
+      "properties":{
+        "blobId": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "size": {
+          "type": "number"
+        },
+        "isInline": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}
