@@ -32,6 +32,7 @@ The `Init` class is responsible for two things. Checking for the required enviro
 
 - JMAP related models: `Message`, `Emailer`, `Attachment` [schema](https://github.com/redsift/sandbox/blob/master/schemas/jmapMessage.json)
 
+- RPC related models: `Request` [schema](https://github.com/redsift/sandbox/blob/master/schemas/rpcRequest.json), `Response` [schema](https://github.com/redsift/sandbox/blob/master/schemas/rpcResponse.json)
 
 ## Protocol
 
