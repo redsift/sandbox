@@ -1,0 +1,70 @@
+{
+  "title": "ComputeRequest",
+  "type": "object",
+  "required": ["in"],
+  "properties":{
+    "in":{
+      "$ref": "#/definitions/inputData"
+    },
+    "with":{
+      "$ref": "#/definitions/inputData"
+    },
+    "query":{
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "lookup":{
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/lookupData"
+      }
+    }
+  },
+  "definitions":{
+    "inputData":{
+      "type": "object",
+      "required": ["bucket", "data"],
+      "properties":{
+        "bucket": {
+          "type": "string"
+        },
+        "data":{
+          "type": "array",
+          "items":{
+           "$ref": "#/definitions/datum"
+          }
+        }
+      }
+    },
+    "lookupData":{
+      "type": "object",
+      "required": ["bucket", "data"],
+      "properties":{
+        "bucket": {
+          "type": "string"
+        },
+        "data":{
+          "$ref": "#/definitions/datum"
+        }
+      }
+    },
+    "datum":{
+      "type": "object",
+      "required": ["key", "value", "epoch", "generation"],
+      "properties":{
+        "key": {
+          "type": "string"
+        },
+        "value": ["__bytes"],
+        "epoch":{
+          "type": "number"
+        },
+        "generation":{
+          "type": "number"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "title": "Protocol Message",
+  "type": "object",
+  "properties":{
+    "out": {
+      "type": "array",
+      "items":{
+        "$ref": "#/computeResponse.json"
+      }
+    },
+    "stats": {
+      "type": "object",
+      "properties":{
+        "result": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "error": {
+      "type": "object"
+    }
+  }
+}

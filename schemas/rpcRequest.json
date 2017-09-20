@@ -1,0 +1,30 @@
+{
+  "title": "RPC Request",
+  "type": "object",
+  "properties":{
+    "remote_addr":{
+      "type": "string"
+    },
+    "method": {
+      "type": "string"
+    },
+    "request_uri":{
+      "type": "string"
+    },
+    "header":{
+      "type": "object",
+      "patternProperties": {
+        ".*":{
+          "type": "array",
+          "items":{
+            "type": "string"
+          }
+        }
+      }
+    },
+    "data":{
+      "title": "base64 encoded content",
+      "type": "string"
+    }
+  }
+}
