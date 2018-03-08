@@ -4,15 +4,15 @@ MAINTAINER Deepak Prabhakara email: deepak@redsift.io version: 1.1.101
 ENV SIFT_ROOT="/run/sandbox/sift" IPC_ROOT="/run/sandbox/ipc" SIFT_JSON="sift.json"
 LABEL io.redsift.sandbox.version="1.0.0" io.redsift.sandbox.rpc="nanomsg"
 
-# Fix for ubuntu to ensure /etc/default/locale is present
-RUN update-locale
-
 RUN export DEBIAN_FRONTEND=noninteractive && \
   apt-get update && \
 	apt-get install -y \
   locales curl autoconf libtool make cmake pkg-config && \
   apt-get purge -y && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# Fix for ubuntu to ensure /etc/default/locale is present
+RUN update-locale
 
 # Install nanomsg
 ENV NANO_MSG=1.1.2
