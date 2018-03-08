@@ -10,7 +10,7 @@ RUN update-locale
 RUN export DEBIAN_FRONTEND=noninteractive && \
   apt-get update && \
 	apt-get install -y \
-  curl autoconf libtool make cmake pkg-config && \
+  locales curl autoconf libtool make cmake pkg-config && \
   apt-get purge -y && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
