@@ -1,0 +1,68 @@
+version: 2.1
+
+executors:
+  dockexec:
+    shell: /bin/sh
+    environment:
+      CONTAINER_NAME: quay.io/redsift/sandbox
+      CIRCLE_REVERSE_DEPENDENCIES: sandbox-javascript sandbox-python sandbox-java sandbox-julia sandbox-go sandbox-swift
+    docker:
+      - image: docker:18.05.0-ce
+
+
+commands:
+  commonbuild:
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run: docker build -t sandbox .
+      - run: docker login -u $QUAY_USER -p $QUAY_PASS quay.io
+  tagging:
+    parameters:
+      name:
+        type: string
+      beta:
+        type: boolean
+        default: true
+    steps:
+      - run: echo "Tagging as << parameters.name >>"
+      - run: docker tag sandbox:latest << parameters.name >><<# parameters.beta >>-beta<</ parameters.beta >>
+
+jobs:
+  build:
+    executor: dockexec
+    steps:
+      - commonbuild
+      - tagging:
+          name: "$CONTAINER_NAME:16.10"
+
+  build-release:
+    steps:
+      - commonbuild
+      - tagging:
+          name: "$CONTAINER_NAME:16.10"
+          beta: false
+      - tagging:
+          name: "$CONTAINER_NAME:latest"
+          beta: false
+
+  trigger-builds:
+    executor: dockexec
+    steps:
+      - checkout
+      - run: ./circle_ci_trigger_build
+
+workflows:
+  version: 2.1
+  build-and-deploy:
+    jobs:
+      - build:
+          filters:
+            branches:
+              ignore:
+                - /release-.*/
+      - build-release:
+          filters:
+            branches:
+              only:
+                - /release-.*/
