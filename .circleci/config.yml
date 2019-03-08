@@ -25,7 +25,7 @@ commands:
         type: boolean
         default: true
     steps:
-      - run: echo "Tagging as << parameters.name >>"
+      - run: echo "Tagging as << parameters.name >>" 
       - run: docker tag sandbox:latest << parameters.name >><<# parameters.beta >>-beta<</ parameters.beta >>
 
 jobs:
