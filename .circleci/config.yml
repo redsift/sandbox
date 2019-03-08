@@ -3,7 +3,7 @@ version: 2.1
 default:
   environment: &envvars
     CONTAINER_NAME: quay.io/redsift/sandbox
-      CIRCLE_REVERSE_DEPENDENCIES: sandbox-javascript sandbox-python sandbox-java sandbox-julia sandbox-go sandbox-swift
+    CIRCLE_REVERSE_DEPENDENCIES: sandbox-javascript sandbox-python sandbox-java sandbox-julia sandbox-go sandbox-swift
 
 executors:
   dockexec:
