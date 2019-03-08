@@ -35,6 +35,7 @@ jobs:
       - commonbuild
       - tagging:
           tag: "17.10"
+      - run: docker image inspect $CONTAINER_NAME
       - deploy:
           command: docker push $CONTAINER_NAME
 
