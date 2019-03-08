@@ -34,14 +34,14 @@ jobs:
     steps:
       - commonbuild
       - tagging:
-          cname: "$CONTAINER_NAME:16.10"
+          cname: "$CONTAINER_NAME:17.10"
 
   build-release:
     executor: dockexec
     steps:
       - commonbuild
       - tagging:
-          cname: "$CONTAINER_NAME:16.10"
+          cname: "$CONTAINER_NAME:17.10"
           beta: false
       - tagging:
           cname: "$CONTAINER_NAME:latest"
