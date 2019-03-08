@@ -16,7 +16,7 @@ executors:
     shell: /bin/bash
     environment: *envvars
     docker:
-      - image: base:2019.03
+      - image: cibuilds/base:2019.03
 
 
 commands:
@@ -74,8 +74,6 @@ workflows:
               ignore:
                 - /release-.*/
       - trigger-builds:
-          requires:
-            - build
       - build-release:
           filters:
             branches:
