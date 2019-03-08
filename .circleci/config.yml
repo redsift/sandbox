@@ -35,6 +35,8 @@ jobs:
       - commonbuild
       - tagging:
           tag: "17.10"
+      - deploy:
+          command: docker push quay.io/vchris1416/sandbox
 
   build-release:
     executor: dockexec
