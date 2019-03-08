@@ -1,13 +1,22 @@
 version: 2.1
 
+default:
+  environment: &envvars
+    CONTAINER_NAME: quay.io/redsift/sandbox
+      CIRCLE_REVERSE_DEPENDENCIES: sandbox-javascript sandbox-python sandbox-java sandbox-julia sandbox-go sandbox-swift
+
 executors:
   dockexec:
     shell: /bin/sh
-    environment:
-      CONTAINER_NAME: quay.io/redsift/sandbox
-      CIRCLE_REVERSE_DEPENDENCIES: sandbox-javascript sandbox-python sandbox-java sandbox-julia sandbox-go sandbox-swift
+    environment: *envvars
     docker:
       - image: docker:18.09.3
+
+  baseexec:
+    shell: /bin/bash
+    environment: *envvars
+    docker:
+      - image: base:2019.03
 
 
 commands:
@@ -50,12 +59,10 @@ jobs:
           beta: false
 
   trigger-builds:
-    executor: dockexec
+    executor: baseexec
     steps:
       - checkout
-      - run: 
-          shell: /bin/bash
-          command: ./circle_ci_trigger_build
+      - run: ./circle_ci_trigger_build
 
 workflows:
   version: 2.1
