@@ -73,7 +73,7 @@ workflows:
             branches:
               ignore:
                 - /release-.*/
-      - trigger-builds:
+      - trigger-builds
       - build-release:
           filters:
             branches:
