@@ -19,14 +19,14 @@ commands:
       - run: docker login -u $QUAY_USER -p $QUAY_PASS quay.io
   tagging:
     parameters:
-      cname:
+      tag:
         type: string
       beta:
         type: boolean
         default: true
     steps:
-      - run: echo "Tagging as << parameters.cname >>" 
-      - run: docker tag sandbox:latest << parameters.cname >><<# parameters.beta >>-beta<</ parameters.beta >>
+      - run: echo "Tagging as $CONTAINER_NAME:<< parameters.tag >>" 
+      - run: docker tag sandbox:latest $CONTAINER_NAME:<< parameters.tag >><<# parameters.beta >>-beta<</ parameters.beta >>
 
 jobs:
   build:
@@ -34,17 +34,17 @@ jobs:
     steps:
       - commonbuild
       - tagging:
-          cname: "$CONTAINER_NAME:17.10"
+          tag: "17.10"
 
   build-release:
     executor: dockexec
     steps:
       - commonbuild
       - tagging:
-          cname: "$CONTAINER_NAME:17.10"
+          tag: "17.10"
           beta: false
       - tagging:
-          cname: "$CONTAINER_NAME:latest"
+          tag: "latest"
           beta: false
 
   trigger-builds:
