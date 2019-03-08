@@ -25,7 +25,7 @@ commands:
         type: boolean
         default: true
     steps:
-      - run: echo "Tagging as $CONTAINER_NAME:<< parameters.tag >>" 
+      - run: echo "Tagging as $CONTAINER_NAME:<< parameters.tag >>"<<# parameters.beta >>-beta<</ parameters.beta >>
       - run: docker tag sandbox:latest "$CONTAINER_NAME:"<< parameters.tag >><<# parameters.beta >>-beta<</ parameters.beta >>
 
 jobs:
