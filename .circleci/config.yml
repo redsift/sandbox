@@ -4,7 +4,7 @@ executors:
   dockexec:
     shell: /bin/sh
     environment:
-      CONTAINER_NAME: quay.io/vchris1416/sandbox
+      CONTAINER_NAME: quay.io/redsift/sandbox
       CIRCLE_REVERSE_DEPENDENCIES: sandbox-javascript sandbox-python sandbox-java sandbox-julia sandbox-go sandbox-swift
     docker:
       - image: docker:18.09.3
@@ -35,7 +35,6 @@ jobs:
       - commonbuild
       - tagging:
           tag: "17.10"
-      - run: docker images
       - deploy:
           command: docker push $CONTAINER_NAME
 
