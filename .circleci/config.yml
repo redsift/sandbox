@@ -53,7 +53,9 @@ jobs:
     executor: dockexec
     steps:
       - checkout
-      - run: ./circle_ci_trigger_build
+      - run: 
+          shell: /bin/bash
+          command: ./circle_ci_trigger_build
 
 workflows:
   version: 2.1
@@ -64,6 +66,9 @@ workflows:
             branches:
               ignore:
                 - /release-.*/
+      - trigger-builds:
+          requires:
+            - build
       - build-release:
           filters:
             branches:
