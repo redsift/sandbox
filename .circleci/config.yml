@@ -2,7 +2,7 @@ version: 2.1
 
 executors:
   dockexec:
-    shell: /bin/bash
+    shell: /bin/sh
     environment:
       CONTAINER_NAME: quay.io/redsift/sandbox
       CIRCLE_REVERSE_DEPENDENCIES: sandbox-javascript sandbox-python sandbox-java sandbox-julia sandbox-go sandbox-swift
