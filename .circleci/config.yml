@@ -44,8 +44,6 @@ jobs:
       - commonbuild
       - tagging:
           tag: "17.10"
-      - deploy:
-          command: docker push $CONTAINER_NAME
 
   build-release:
     executor: dockexec
