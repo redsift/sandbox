@@ -43,7 +43,7 @@ jobs:
     steps:
       - commonbuild
       - tagging:
-          tag: "17.10"
+          tag: "18.04"
       - deploy:
           command: docker push $CONTAINER_NAME
 
@@ -52,7 +52,7 @@ jobs:
     steps:
       - commonbuild
       - tagging:
-          tag: "17.10"
+          tag: "18.04"
           beta: false
       - tagging:
           tag: "latest"
