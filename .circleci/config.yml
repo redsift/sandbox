@@ -30,12 +30,9 @@ commands:
     parameters:
       tag:
         type: string
-      beta:
-        type: boolean
-        default: true
     steps:
-      - run: echo "Tagging as $CONTAINER_NAME:<< parameters.tag >>"<<# parameters.beta >>-beta<</ parameters.beta >>
-      - run: docker tag sandbox:latest "$CONTAINER_NAME:"<< parameters.tag >><<# parameters.beta >>-beta<</ parameters.beta >>
+      - run: echo "Tagging as $CONTAINER_NAME:<< parameters.tag >>"
+      - run: docker tag sandbox:latest "$CONTAINER_NAME:"<< parameters.tag >>
 
 jobs:
   build:
@@ -43,7 +40,9 @@ jobs:
     steps:
       - commonbuild
       - tagging:
-          tag: "18.04"
+          tag: "beta"
+      - tagging:
+          tag: "18.04-beta"
       - deploy:
           command: docker push $CONTAINER_NAME
 
@@ -53,10 +52,8 @@ jobs:
       - commonbuild
       - tagging:
           tag: "18.04"
-          beta: false
       - tagging:
           tag: "latest"
-          beta: false
 
   trigger-builds:
     executor: baseexec
