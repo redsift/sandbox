@@ -54,6 +54,8 @@ jobs:
           tag: "18.04"
       - tagging:
           tag: "latest"
+      - deploy:
+          command: docker push $CONTAINER_NAME
 
   trigger-builds:
     executor: baseexec
