@@ -7,10 +7,10 @@ default:
 
 executors:
   dockexec:
-    shell: /bin/sh
+    shell: /bin/bash
     environment: *envvars
     docker:
-      - image: docker:18.09.3
+      - image: cibuilds/docker:19.03.5
 
   baseexec:
     shell: /bin/bash
@@ -45,6 +45,7 @@ jobs:
           tag: "18.04-beta"
       - deploy:
           command: docker push $CONTAINER_NAME
+      - run: ./circle_ci_trigger_build
 
   build-release:
     executor: dockexec
@@ -56,11 +57,6 @@ jobs:
           tag: "latest"
       - deploy:
           command: docker push $CONTAINER_NAME
-
-  trigger-builds:
-    executor: baseexec
-    steps:
-      - checkout
       - run: ./circle_ci_trigger_build
 
 workflows:
@@ -72,13 +68,6 @@ workflows:
             branches:
               ignore:
                 - /release-.*/
-      - trigger-builds:
-          requires:
-            - build
-          filters:
-            branches:
-              only:
-                - master
       - build-release:
           filters:
             branches:
