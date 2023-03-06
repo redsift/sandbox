@@ -64,11 +64,13 @@ workflows:
   build-and-deploy:
     jobs:
       - build:
+          context: org-global
           filters:
             branches:
               ignore:
                 - /release-.*/
       - build-release:
+          context: org-global
           filters:
             branches:
               only:
