@@ -1,9 +1,9 @@
-FROM ubuntu:18.04
+FROM ubuntu:22.04
 LABEL author.name="Deepak Prabhakara" \
   author.email="deepak@redsift.io" \
-  version="1.1.101" \
+  version="1.1.102" \
   organization="Red Sift"
-  
+
 ENV SIFT_ROOT="/run/sandbox/sift" IPC_ROOT="/run/sandbox/ipc" SIFT_JSON="sift.json"
 LABEL io.redsift.sandbox.version="1.0.0" io.redsift.sandbox.rpc="nanomsg"
 
