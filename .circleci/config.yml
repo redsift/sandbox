@@ -42,7 +42,7 @@ jobs:
       - tagging:
           tag: "beta"
       - tagging:
-          tag: "22.04-beta"
+          tag: "20.04-beta"
       - deploy:
           command: docker push $CONTAINER_NAME
       - run: ./circle_ci_trigger_build
@@ -52,7 +52,7 @@ jobs:
     steps:
       - commonbuild
       - tagging:
-          tag: "22.04"
+          tag: "20.04"
       - tagging:
           tag: "latest"
       - deploy:

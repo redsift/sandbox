@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM ubuntu:20.04
 LABEL author.name="Deepak Prabhakara" \
   author.email="deepak@redsift.io" \
   version="1.1.102" \
